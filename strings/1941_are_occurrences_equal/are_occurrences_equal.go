@@ -1,8 +1,7 @@
 package areoccurrencesequal
 
-
 func areOccurrencesEqual(s string) bool {
-	m  := map[rune] int{}
+	m := map[rune]int{}
 	for _, r := range s {
 		m[r]++
 	}
@@ -13,6 +12,6 @@ func areOccurrencesEqual(s string) bool {
 			return false
 		}
 	}
-    
+
 	return true
 }
