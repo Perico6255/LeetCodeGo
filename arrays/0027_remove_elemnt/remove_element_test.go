@@ -12,7 +12,10 @@ func TestRemoveElemnt(t *testing.T) {
 		
 	}{
 		{"Case 1",[]int{3,2,2,3},3,[]int{2,2}},
-		{"Case 2",[]int{0,1,2,2,3,0,4,2},2,[]int{0,1,3,0,4}},
+		{"Case 2",[]int{0,1,2,2,3,0,4,2},2,[]int{0,1,4,0,3}},
+		{"Case 3",[]int{1},1,[]int{}},
+		{"Case 4",[]int{4,5},5,[]int{4}},
+		{"Case 5",[]int{},0,[]int{}},
 	}
 	for _,tc := range tests {
 		t.Run(tc.name,func(t *testing.T) {
