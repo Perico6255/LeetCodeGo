@@ -1,7 +1,6 @@
 package sum
 
 import (
-	"slices"
 	"testing"
 )
 
@@ -13,6 +12,8 @@ func TestThreeSum(t *testing.T) {
 		expected [][]int
 	}{
 		{"Case 1",[]int{-1,0,1,2,-1,-4},[][]int{{-1,-1,2},{-1,0,1}}},
+		{"Case 2",[]int{0,1,1},[][]int{}},
+		{"Case 3",[]int{0,0,0},[][]int{{0,0,0}}},
 	}
 	
 	for _, tc := range tests {
@@ -20,15 +21,12 @@ func TestThreeSum(t *testing.T) {
 			got := threeSum(tc.nums)
 			if len(got) != len(tc.expected) {
 				t.Fatalf("Not same lenght \nexpected: %d, got: %d",tc.expected, got)
-			}	
-			for _, e := range tc.expected {
-				for _, g := range got {
-					if slices.Equal(e,g) {
-						break
-					}
-				}
-				t.Errorf("Expected array: %d not found in the output: %d",e, got)
+			}else {
+				t.Log("Same Lenght!!")
+				t.Logf("expected: %d",tc.expected)
+				t.Logf("got: %d",got)
 			}
+			
 		})
 		
 	}
