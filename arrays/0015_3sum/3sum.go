@@ -1,39 +1,37 @@
 package sum
 
 func threeSum(nums []int) [][]int {
-	l := len(nums)
-	sum := make([][]int,0)
-	mi := make(map[int]struct{})
-	mj := make(map[int]struct{})
-	var n, nk   int
-	for i := range l - 2  {
-		if _,ok := mi[nums[i]]; ok {
-			continue
+	m := make(map[int]int)
+	r := make(map[int]struct{},len(nums))
+	l := 0
+	for _, n := range nums {
+		if _,ok := m[n]; !ok {
+			nums[l] = n
+			l++
+		}else {
+			r[n] = struct{}{}
 		}
-		if _,ok := mj[nums[i]]; ok {
-			continue
-		}
-		for j:= i + 1; j < l - 1; j++ {
-			if _,ok := mj[nums[j]]; ok {
-				continue
-			}
-			if nk !=0 && nums[nk] == nums[j] {
-				continue
-				
-			}
-			n = nums[j] + nums[i]
-			for k := j + 1; k< l; k++ {
-				if -n == nums[k] {
-					mi[nums[i]] = struct{}{}
-					mj[nums[j]] = struct{}{}
-					sum = append(sum, []int{nums[i],nums[j],nums[k]})
-					nk = k
-					break
-				}
-			}
-		}
-		nk = 0
-		
+		m[n]++
 	}
+	sum := make([][]int,0)
+
+
+
+	for vr:= range r {
+
+		l = -2*vr
+		if l == 0 {
+			continue
+		}
+		if  _,ok:= m[l]; ok  {
+			sum = append(sum, []int{vr,vr,l})
+			break
+		}
+	}
+	if m[0] >2 {
+		sum = append(sum, []int{0,0 , 0})
+	}
+
+
 	return sum 
 }
